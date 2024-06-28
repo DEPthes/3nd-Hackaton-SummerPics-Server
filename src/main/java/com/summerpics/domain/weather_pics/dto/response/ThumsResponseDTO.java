@@ -5,12 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
-public class WeatherPicRes {
-    private String picUrl;
-    private String weatherStatus;
-    private int temp;
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ThumsResponseDTO {
+    private long picture_id;
+    private int thums;
 }
