@@ -32,6 +32,22 @@ public class WeatherPicsService {
         }
     }
 
+    // 좋아요 취소
+    public ThumsResponseDTO cancelThums(ThumsRequestDTO thumsRequestDTO) {
+        Optional<WeatherPics> optionalWeatherPics = weatherPicsRepository.findById(thumsRequestDTO.getPicture_id());
+        if (optionalWeatherPics.isPresent()) {
+            WeatherPics weatherPics = optionalWeatherPics.get();
+            int currentThums = weatherPics.getThums();
+            if (currentThums > 0) {
+                weatherPics.setThums(currentThums - 1);
+                weatherPicsRepository.save(weatherPics);
+            }
+            return new ThumsResponseDTO(weatherPics.getPictureId(), weatherPics.getThums());
+        } else {
+            throw new IllegalArgumentException("Invalid picture_id");
+        }
+    }
+
     // 상위 짤 리스트
     public List<WeatherPicsRankDTO> getWeatherPicsRank() {
         List<WeatherPicsRankDTO> rankList = weatherPicsRepository.findTopRankings()

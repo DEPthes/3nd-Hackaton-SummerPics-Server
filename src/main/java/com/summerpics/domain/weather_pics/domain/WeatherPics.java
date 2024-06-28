@@ -42,14 +42,6 @@ public class WeatherPics {
     @ManyToOne
     @JoinColumn(name="weather_id")
     private WeatherInfo weatherInfo;
-
-    @Builder
-    public WeatherPics(Long pictureId, String pictureUrl, int thums, String title) {
-        this.pictureId = pictureId;
-        this.pictureUrl = pictureUrl;
-        this.thums = thums;
-        this.title = title;
-    }
   
     public void increaseThums() {
           this.thums++;

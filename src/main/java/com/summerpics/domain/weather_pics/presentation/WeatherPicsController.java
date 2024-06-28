@@ -33,6 +33,13 @@ public class WeatherPicsController {
         return ResponseEntity.ok(response);
     }
 
+    // 좋아요 취소
+    @PostMapping("/thums/cancel")
+    public ResponseEntity<ThumsResponseDTO> cancelThums(@RequestBody ThumsRequestDTO thumsRequestDTO) {
+        ThumsResponseDTO response = weatherPicsService.cancelThums(thumsRequestDTO);
+        return ResponseEntity.ok(response);
+    }
+
     // 좋아요 수에 따른 랭킹
     @GetMapping("/rank")
     public List<WeatherPicsRankDTO> getWeatherPicsRank() {
