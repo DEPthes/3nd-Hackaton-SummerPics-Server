@@ -5,13 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
-public class WeatherInfoReq {
-    private String baseDate;
-    private String baseTime;
-    private String nx;
-    private String ny;
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ThumsRequestDTO {
+    private long picture_id;
+    private boolean like;   // true : like, false : unlike
 }

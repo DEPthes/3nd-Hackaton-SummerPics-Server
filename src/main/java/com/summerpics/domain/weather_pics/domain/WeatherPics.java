@@ -4,13 +4,14 @@ import com.summerpics.domain.temp_info.domain.TempInfo;
 import com.summerpics.domain.weather_info.domain.WeatherInfo;
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="WeatherPics")
 @NoArgsConstructor
-@Getter
+@Data
 public class WeatherPics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,14 @@ public class WeatherPics {
     @Column(name="title")
     private String title;
 
-
+    @Builder
+    public WeatherPics(Long pictureId, String pictureUrl, int thums, String title) {
+        this.pictureId = pictureId;
+        this.pictureUrl = pictureUrl;
+        this.thums = thums;
+        this.title = title;
+    }
+  
     @ManyToOne
     @JoinColumn(name="temp_id")
     private TempInfo tempInfo;
@@ -34,12 +42,14 @@ public class WeatherPics {
     @ManyToOne
     @JoinColumn(name="weather_id")
     private WeatherInfo weatherInfo;
+  
+    public void increaseThums() {
+          this.thums++;
+    }
 
-    @Builder
-    public WeatherPics(Long pictureId, String pictureUrl, int thums, String title) {
-        this.pictureId = pictureId;
-        this.pictureUrl = pictureUrl;
-        this.thums = thums;
-        this.title = title;
+    public void decreaseThums() {
+        if(this.thums > 0) {
+            this.thums--;
+        }
     }
 }
